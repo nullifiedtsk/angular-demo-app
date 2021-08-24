@@ -1,0 +1,23 @@
+<div class="example-container">
+  <div class="settings-block">
+    <h4>Settings:</h4>
+    <label>
+      Show extra info?
+      <input type="number" [ngModel]="value" readonly="readonly" />
+      <button (click)="increase()">+</button>
+    </label>
+  </div>
+
+  <div class="result-container">
+    <h4>Result:</h4>
+    <div class="content-item" [ngSwitch]="value">
+      <span *ngSwitchCase="0">Let's start</span>
+      <span *ngSwitchCase="1">First case</span>
+      <span *ngSwitchCase="2">Second case</span>
+      <span *ngSwitchCase="3">Third case</span>
+      <span *ngSwitchCase="4">Fourth case</span>
+      <span *ngSwitchCase="5">Fifth case</span>
+      <span *ngSwitchDefault>This is too much for me.</span>
+    </div>
+  </div>
+</div>

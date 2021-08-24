@@ -1,0 +1,98 @@
+<div class="example-container">
+  <div class="settings-block">
+    <h4>Settings:</h4>
+
+    <!--
+      With reactive forms formControl directive we cannot bind directly to a property
+      but going to bind to a formControl (ReactiveFormsModule) instead.
+
+      Reactive forms brings a more flexible way to build complex forms with complex validations
+      allowing you to access form state just accessing formControl variable.
+
+      You can work with form by accessing form controls via `formControlName` inside the form/formGroup
+      and also can access controls directly (even without working inside the form), e.g.:
+
+      ```
+      <label>
+        Title:
+        <input [formControl]="form.controls.name" />
+      </label>
+
+      <label>
+        Title:
+        <input [formControl]="form.controls.age" />
+      </label>
+      ```
+
+      Or even by declaring separate formControls and accessing controls directly:
+
+      ```
+      <label>
+        Title:
+        <input [formControl]="nameControl" />
+      </label>
+
+      <label>
+        Title:
+        <input [formControl]="ageControl" />
+      </label>
+      ```
+    -->
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <label>
+        Name:
+        <input formControlName="name" />
+      </label>
+
+      <label>
+        Age:
+        <input formControlName="age" />
+      </label>
+
+      <label>
+        Gender:
+        <select formControlName="gender">
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </label>
+
+      <button type="submit" [disabled]="form.invalid">Submit</button>
+    </form>
+  </div>
+
+  <div class="result-container">
+    <h4>Result:</h4>
+
+    <div class="block">
+      Your value is:
+      <div class="card secondary-light">
+        <pre>{{form.value | json}}</pre>
+      </div>
+    </div>
+
+    <div class="block">
+      Form group state:
+      <div class="card secondary-dark">
+        <div class="block-item">Is touched: {{form.touched}}</div>
+        <div class="block-item">Is valid: {{form.valid}}</div>
+        <div class="block-item">Is dirty: {{form.dirty}}</div>
+        <div class="block-item">Is disabled: {{form.disabled}}</div>
+        <div class="block-item">Status: {{form.status}}</div>
+      </div>
+    </div>
+
+    <div class="block">
+      Added persons:
+      <div class="block">
+        <ng-container *ngIf="persons.length > 0; else noPersonsTemplate">
+          <div class="card secondary-light" *ngFor="let person of persons">
+            {{person.name}}, {{person.gender}}, {{person.age}}
+          </div>
+        </ng-container>
+
+        <ng-template #noPersonsTemplate> You have not added any person yet. </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="example-container">
+  <div class="settings-block">
+    <h4>Settings:</h4>
+    <!--
+        With reactive forms formControl directive we cannot bind directly to a property
+        but going to bind to a formControl (ReactiveFormsModule) instead.
+
+        Reactive forms brings a more flexible way to build complex forms with complex validations
+        allowing you to access form state just accessing formControl variable.
+      -->
+    <label>
+      Please input your text:
+      <input [formControl]="formControl" />
+    </label>
+  </div>
+
+  <div class="result-container">
+    <h4>Result:</h4>
+
+    Your value is:
+    <div class="card secondary-light">
+      <pre>{{formControl.value}}</pre>
+    </div>
+
+    <div class="block">
+      Form control state:
+      <div class="card secondary-dark">
+        <div class="status-item">Is touched: {{formControl.touched}}</div>
+        <div class="status-item">Is valid: {{formControl.valid}}</div>
+        <div class="status-item">Is dirty: {{formControl.dirty}}</div>
+        <div class="status-item">Is disabled: {{formControl.disabled}}</div>
+        <div class="status-item">Status: {{formControl.status}}</div>
+      </div>
+    </div>
+  </div>
+</div>

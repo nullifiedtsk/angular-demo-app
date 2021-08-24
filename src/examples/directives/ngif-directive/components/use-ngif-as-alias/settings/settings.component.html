@@ -1,0 +1,21 @@
+<!-- This input use two-way binding using CVA. -->
+<!-- CVA is implemented for all the HTML native elements -->
+<!-- [(ngModel)]="userName" can also be written as [ngModel]="userName" (ngModelChange)="useName = $event" -->
+<!-- Directive NgModel is provided by Angular built-in FormsModule -->
+<label>
+  User name:
+  <input [ngModel]="currentValue.userName" (ngModelChange)="updateUser({userName: $event})"/>
+</label>
+
+<label>
+  User age:
+  <input type="number" [ngModel]="currentValue.userName" (ngModelChange)="updateUser({userAge: +$event})"/>
+</label>
+
+<label>
+  User gender:
+  <select [ngModel]="currentValue.userGender" (ngModelChange)="updateUser({userGender: $event})">
+    <option value="male">Male</option>
+    <option value="female">Female</option>
+  </select>
+</label>

@@ -1,0 +1,60 @@
+<div class="example-container">
+  <div class="settings-container">
+    <h4>Settings:</h4>
+    <select [(ngModel)]="classToUse">
+      <option value="primary">primary</option>
+      <option value="primary-light">primary-light</option>
+      <option value="primary-dark">primary-dark</option>
+      <option value="secondary">secondary</option>
+      <option value="secondary-light">secondary-light</option>
+      <option value="secondary-dark">secondary-dark</option>
+    </select>
+  </div>
+
+  <div class="result-container">
+    <h4>Result:</h4>
+    <!-- just interpolate class string -->
+    <div class="result card {{ classToUse }}">This box will apply class from the dropdown.</div>
+
+    <!--
+      ngClass directive works close to `classList` in react
+      You provides list of classes and logical expression to switch them in form:
+
+      [ngClass]="{
+        className: expression,
+        "class-name-2": anotherExpression,
+        ...
+      }"
+    -->
+    <!--  -->
+    <div
+      class="result card"
+      [ngClass]="{
+        primary: classToUse === 'primary',
+        'primary-light': classToUse === 'primary-light',
+        'primary-dark': classToUse === 'primary-dark',
+        secondary: classToUse === 'secondary',
+        'secondary-light': classToUse === 'secondary-light',
+        'secondary-dark': classToUse === 'secondary-dark'
+      }"
+    >
+      This box will also apply class from the dropdown.
+    </div>
+
+    <!--
+    You can also define separate class assignments this way:
+    [class.className]="expression"
+    -->
+    <div
+      class="result card"
+      [class.primary]="classToUse === 'primary'"
+      [class.primary-light]="classToUse === 'primary-light'"
+      [class.primary-dark]="classToUse === 'primary-dark'"
+      [class.secondary]="classToUse === 'secondary'"
+      [class.secondary-light]="classToUse === 'secondary-light'"
+      [class.secondary-dark]="classToUse === 'secondary-dark'"
+    >
+      This box will also apply class from the dropdown.
+    </div>
+  </div>
+</div>

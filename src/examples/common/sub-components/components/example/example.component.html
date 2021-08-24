@@ -1,0 +1,16 @@
+<div class="example-container">
+  <div class="settings-block">
+    <h4>Settings: </h4>
+    <app-sub-components-example-settings
+      [user]="currentUser"
+      (userChange)="updateCurrentUser($event)"
+    ></app-sub-components-example-settings>
+  </div>
+
+  <div class="result-container">
+    <h4>Result: </h4>
+    <!-- There we are gosing to display variable from example.component.ts -->
+    <!-- Since we are using default change detecition, field should update automatically once it changed -->
+    <div class="card secondary-light">Hello, {{ currentUser.userName }}!</div>
+  </div>
+</div>

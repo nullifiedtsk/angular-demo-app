@@ -1,0 +1,20 @@
+<div class="example-container">
+  <div class="settings-block">
+    <h4>Settings: </h4>
+    <label>
+      Type your text:
+      <!-- ngModel directive connects your variable to internal CVA implementation of input component -->
+      <!-- angular have builtin CVA implementation for all the native HTML elements -->
+      <!-- Once we have implemented the CVA, we will be able to use this control with [ngModel] and [formControl] directives -->
+      <app-control-value-accessor-example-input
+        [(ngModel)]="textValue"
+      ></app-control-value-accessor-example-input>
+    </label>
+  </div>
+
+  <div class="result-container">
+    <h4>Result: </h4>
+    Whoa, this is result: <br/>
+    <pre>{{textValue}}</pre>
+  </div>
+</div>

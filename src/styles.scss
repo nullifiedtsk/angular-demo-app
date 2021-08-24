@@ -1,1 +1,53 @@
 /* You can add global styles to this file, and also import other style files */
+@import "./styles/reset";
+@import "./styles/theme";
+@import "./styles/controls";
+
+.block,
+.settings-block,
+.settings-container,
+.extra-info,
+.result-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 1em;
+  padding: 0.5em;
+  border: 2px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.25em;
+  box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.1);
+
+  label {
+    display: flex;
+    align-items: center;
+
+    &:not(:first-child) {
+      margin-top: 0.5em;
+    }
+
+    &> * {
+      margin-left: 0.5em;
+    }
+  }
+
+  button:not(:first-child) {
+    margin-top: 0.5em;
+  }
+}
+
+.example-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 1em;
+}
+
+.card {
+  padding: 0.5em;
+  border-radius: 0.3em;
+  box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: 0.3s box-shadow ease;
+
+  &:hover {
+    box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.5);
+  }
+}

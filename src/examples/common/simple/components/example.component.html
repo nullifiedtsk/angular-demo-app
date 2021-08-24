@@ -1,0 +1,20 @@
+<div class="example-container">
+  <div class="settings-block">
+    <h4>Settings:</h4>
+    <!-- This input use two-way binding using CVA. -->
+    <!-- CVA is implemented for all the HTML native elements -->
+    <!-- [(ngModel)]="userName" can also be written as [ngModel]="userName" (ngModelChange)="useName = $event" -->
+    <!-- Directive NgModel is provided by Angular built-in FormsModule -->
+    <label>
+      Put your name:
+      <input [(ngModel)]="userName" />
+    </label>
+  </div>
+
+  <!-- There we are gosing to display variable from example.component.ts -->
+  <!-- Since we are using default change detecition, field should update automatically once it changed -->
+  <div class="result-container">
+    <h4>And check the result:</h4>
+    <div class="card secondary-light">Hello, {{ userName }}!</div>
+  </div>
+</div>

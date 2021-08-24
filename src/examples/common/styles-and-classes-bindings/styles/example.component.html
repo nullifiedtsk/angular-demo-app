@@ -1,0 +1,53 @@
+<div class="example-container">
+  <div class="settings-container">
+    <h4>Settings:</h4>
+    <label>
+      Font size in PX
+      <input type="number" [(ngModel)]="fontSize" />
+    </label>
+
+    <label>
+      Margin left in PX
+      <input type="number" [(ngModel)]="marginLeft" />
+    </label>
+
+    <label>
+      Custom style (will affect only last block)
+      <textarea [ngModel]="customStyle" (ngModelChange)="onCustomStyleChange($event)"></textarea>
+    </label>
+  </div>
+
+  <div class="result-container">
+    <h4>Result:</h4>
+    <!-- just interpolate the style string -->
+    <div style="left: {{ marginLeft }}px; font-size: {{ fontSize }}px;">
+      This box will apply styles from the settings block.
+    </div>
+
+    <!-- apply individual styles (the most flexible way) -->
+    <div [style.font-size.px]="fontSize" [style.margin-left.px]="marginLeft">
+      This box will also apply styles from the settings block.
+    </div>
+
+    <!--
+    ngStyle directive works close to `style` binding in react expect the case that it's not typed and
+    style value should be exact the same as you will use in the CSS (including units, measures, e.t.c.)
+
+    [ngStyle]="{
+      'font-size': '12px',
+      'display': 'flex',
+      'flex-direction': 'row'
+    }"
+  -->
+    <!--  -->
+    <div class="result" [ngStyle]="{ 'font-size': '{{fontSize}}px', 'margin-left': '{{marginLeft}}px' }">
+      This box will also apply styles from the settings block.
+    </div>
+
+    <!-- apply custom style from the variable -->
+    <!-- in case we are going to display custom styles from strings (as html from the string) we need to bypass security checks -->
+    <!-- By default for security reasons Angular cuts off some CSS/HTML/JS/image content to not let inject suspicious code into your page from an external source -->
+    <!-- To make angular trust your style you need to inject DomSanitizer from angular package and convert your string into SanitizedString calling some of sanitizer' methods -->
+    <div [style]="customStyleResult">This box will also custom styles string from the settings block.</div>
+  </div>
+</div>

@@ -1,0 +1,93 @@
+<div class="example-container">
+  <div class="settings-block">
+    <h4>Settings:</h4>
+
+    <!--
+      Before checking the form-array example, please, check simple and form-group examples.
+
+      Form array gives us possibility to work with arrays of control, for example, when we need to work with tables
+      of similar or dynamic rows of controls.
+
+      FormArray gives us possibility to manipulate arrays of single formControl or a formGroup or even a nested FormArrays.
+    -->
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Gender</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let control of form.controls; index as index;" [formGroup]="$any(control)">
+          <td>
+            <input formControlName="name" />
+          </td>
+
+          <td>
+            <input formControlName="age" type="number" min="0" max="1000" />
+          </td>
+
+          <td>
+            <select formControlName="gender">
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </td>
+
+          <td>
+            <button (click)="deleteRow(index)">❌</button>
+          </td>
+        </tr>
+
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>
+            <button (click)="addRow()">➕</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button type="submit" (click)="submitForm()" [disabled]="form.invalid">Submit</button>
+  </div>
+
+  <div class="result-container">
+    <h4>Result:</h4>
+
+    <div class="block">
+      Your value is:
+      <div class="card secondary-light">
+        <pre>{{form.value | json}}</pre>
+      </div>
+    </div>
+
+    <div class="block">
+      Form array state:
+      <div class="card secondary-dark">
+        <div class="block-item">Is touched: {{form.touched}}</div>
+        <div class="block-item">Is valid: {{form.valid}}</div>
+        <div class="block-item">Is dirty: {{form.dirty}}</div>
+        <div class="block-item">Is disabled: {{form.disabled}}</div>
+        <div class="block-item">Status: {{form.status}}</div>
+      </div>
+    </div>
+
+    <div class="block">
+      Added persons:
+      <ng-container *ngIf="persons.length > 0; else noPersonsTemplate">
+        <div class="card secondary-light" *ngFor="let person of persons">
+          {{person.name}}, {{person.gender}}, {{person.age}}
+        </div>
+      </ng-container>
+
+      <ng-template #noPersonsTemplate>
+        <div class="card secondary-light">You have not added any person yet.</div>
+      </ng-template>
+    </div>
+  </div>
+</div>

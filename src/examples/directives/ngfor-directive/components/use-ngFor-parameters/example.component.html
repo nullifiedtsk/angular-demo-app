@@ -1,0 +1,36 @@
+<div class="example-container">
+  <!--
+    loops DATA variable with temponary variable called ENTRY
+    In this example we are using some variables that ngFor exports.
+
+    Right after defining the loop we are defined some variable with given syntax:
+    ; exportedVariableName as variableNameYouWantToUse;
+  -->
+  <!-- ngFor directive is providen by `CommonModule` of angular -->
+  <div class="result-container">
+    <h4>Result: </h4>
+    <div
+      *ngFor="
+        let entry of data;
+        index as i;
+        count as totalCount;
+        first as isFirst;
+        last as isLast;
+        even as isEven;
+        odd as isOdd
+      "
+      class="card secondary-light"
+      [class.odd]="isOdd"
+      [class.even]="isEven"
+      [class.first]="isFirst"
+      [class.last]="isLast"
+      #divElementRef
+    >
+      <div>
+        {{ entry.name }} have id {{ entry.id }}
+        <div>Class list: {{ divElementRef.className }}</div>
+        <div>Record {{ i + 1 }} of {{ totalCount }}</div>
+      </div>
+    </div>
+  </div>
+</div>

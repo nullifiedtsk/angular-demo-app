@@ -1,0 +1,17 @@
+<div class="example-container">
+  <div class="settings-block">
+    <h4>Settings: </h4>
+    <label>
+      Type your text:
+      <!-- ngModel directive connects your variable to internal CVA implementation of input component -->
+      <!-- angular have builtin CVA implementation for all the native HTML elements -->
+      <textarea [ngModel]="text" (ngModelChange)="onTextChanged($event)"></textarea>
+    </label>
+  </div>
+
+  <div class="result-container">
+    <h4>Result: </h4>
+    Whoa, this is result: <br/>
+    <pre>{{text}}</pre>
+  </div>
+</div>

@@ -1,0 +1,68 @@
+@use 'theme' as c;
+
+input,
+textarea,
+button,
+select {
+  border: none;
+  border-radius: 0.25em;
+  padding: 0.25em;
+  outline: none;
+  font-size: 1em;
+  box-shadow: 0 0 1em rgb(0 0 0 / 8%);
+  transition: 0.3s box-shadow ease;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0 0 0.5em rgb(0 0 0 / 25%);
+  }
+}
+
+@mixin themed-controls($value) {
+  .primary {
+    #{$value} {
+      @include c.primary-light();
+    }
+  }
+
+  .primary-light {
+    #{$value} {
+      @include c.primary();
+    }
+  }
+
+  .primary-dark {
+    #{$value} {
+      @include c.primary();
+    }
+  }
+
+  .secondary {
+    #{$value} {
+      @include c.secondary-light();
+    }
+  }
+
+  .secondary-light {
+    #{$value} {
+      @include c.secondary();
+    }
+  }
+
+  .secondary-dark {
+    #{$value} {
+      @include c.secondary();
+    }
+  }
+}
+
+@include themed-controls("select, input, textarea, button");
+
+.ng-invalid.ng-touched:not(form) {
+  border-bottom: 2px solid red;
+}
+
+button {
+  min-width: 2em;
+}
+

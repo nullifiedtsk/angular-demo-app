@@ -1,0 +1,17 @@
+:host {
+  thead th {
+    &:not(:last-child) {
+      width: 33%;
+    }
+    &:last-child {
+      width: 1%;
+    }
+  }
+  tbody td {
+    text-align: center;
+
+    &> input, select, textarea {
+      min-width: 50%;
+    }
+  }
+}

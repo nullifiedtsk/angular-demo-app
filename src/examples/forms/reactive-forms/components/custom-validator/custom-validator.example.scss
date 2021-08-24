@@ -1,0 +1,10 @@
+@use 'theme' as c;
+
+:host {
+  .error {
+    @extend .secondary-dark;
+    border-radius: 0.25em;
+    padding: 0.2em 0.5em;
+    margin: 0 0.5em;
+  }
+}

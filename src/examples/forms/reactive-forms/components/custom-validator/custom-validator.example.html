@@ -1,0 +1,85 @@
+<div class="example-container">
+  <div class="settings-block">
+    <h4>Settings:</h4>
+
+    <div class="card secondary-dark">
+      <pre>
+Please, check `form-group` example before.
+There we are going to use some custom validators for each of controls we have and show the error via JSON pipe if available.
+
+This example contains custom validators for NAME, AGE, GENDER fields.
+
+Also, let's try and set name 'Bob' then set the gender to 'female' :)</pre
+      >
+    </div>
+    <!--
+      Please, check `form-group` example before.
+      There we are going to use some custom validators for each of controls we have and show the error via JSON pipe if available.
+
+      This example contains custom validators for NAME, AGE, GENDER fields.
+
+      Also, let's try and set name 'Bob' then set the gender to 'female' :)
+    -->
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="settings-block">
+      <label>
+        Name:
+        <input formControlName="name" />
+        <span class="error" *ngIf="getErrorsForControl('name') as errors">Control errors: {{errors | json}}</span>
+      </label>
+
+      <label>
+        Age:
+        <input formControlName="age" />
+        <span class="error" *ngIf="getErrorsForControl('age') as errors">Control errors: {{errors | json}}</span>
+      </label>
+
+      <label>
+        Gender:
+        <select formControlName="gender">
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+        <span class="error" *ngIf="getErrorsForControl('gender') as errors"> Control errors: {{errors | json}} </span>
+      </label>
+
+      <div class="card secondary-dark" *ngIf="form.errors">
+        <span class="error">Form errors: {{form.errors | json}}</span>
+      </div>
+
+      <button type="submit" [disabled]="form.invalid">Submit</button>
+    </form>
+  </div>
+
+  <div class="result-container">
+    <h4>Result:</h4>
+
+    Your value is:
+    <div class="card secondary-light">
+      <pre>{{form.value | json}}</pre>
+    </div>
+
+    <div class="block">
+      Form group state:
+      <div class="card secondary-dark">
+        <div class="block-item">Is touched: {{form.touched}}</div>
+        <div class="block-item">Is valid: {{form.valid}}</div>
+        <div class="block-item">Is dirty: {{form.dirty}}</div>
+        <div class="block-item">Is disabled: {{form.disabled}}</div>
+        <div class="block-item">Status: {{form.status}}</div>
+      </div>
+    </div>
+
+    <div class="block">
+      Added persons:
+      <ng-container *ngIf="persons.length > 0; else noPersonsTemplate">
+        <div class="card secondary-light" *ngFor="let person of persons">
+          {{person.name}}, {{person.gender}} , {{person.age}}
+        </div>
+      </ng-container>
+
+      <ng-template #noPersonsTemplate>
+        <div class="card secondary-dark">You have not added any person yet.</div>
+      </ng-template>
+    </div>
+  </div>
+</div>

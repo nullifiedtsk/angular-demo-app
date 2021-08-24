@@ -1,0 +1,28 @@
+<div class="example-container">
+  <div class="settings-block">
+    <h4>Settings:</h4>
+    <app-use-ngif-as-alias-user-settings
+      [user]="userModel"
+      (userChange)="updateUser($event)"
+    ></app-use-ngif-as-alias-user-settings>
+  </div>
+
+  <div class="result-container">
+    <h4>Result:</h4>
+    <!-- this block will not be rendered if userModel variable is falsy -->
+    <!-- falsy means any javascript negative boolean condition, such as empty string, zero, NaN, undefined, null, etc -->
+    <!-- ngIf directive is providen by `CommonModule` of angular -->
+    <div class="card secondary-dark" *ngIf="userModel as user; else noContentTemplate">
+      <!-- Inside this block userModel will always have value -->
+      <pre>
+User name is: {{ user.userName }}
+User age is: {{ user.userAge }}
+User gender is: {{ user.userGender }}</pre
+      >
+    </div>
+
+    <ng-template #noContentTemplate>
+      <div class="card secondary-light">Please, change settings to show result.</div>
+    </ng-template>
+  </div>
+</div>

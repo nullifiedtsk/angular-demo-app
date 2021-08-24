@@ -1,0 +1,61 @@
+<div class="example-container">
+  <div class="settings-block">
+    <h4>Settings:</h4>
+    <!--
+      If your component implements CVA (ControlValueAccessor) and providers NG_VALUE_ACCESSOR
+      you can use your component with template-driven forms.
+
+      This means you can bind your component with [ngModel] directive (from FormsModule) directly to
+      your variables (regardless of the type).
+
+      In this case we will use native INPUT component with default (builtin) CVA implementation.
+
+      [ngModel] binding can be customized with [ngModelOptions] input parameter
+      [ngModelOptions] contains three options you can customize:
+      - name - control name
+      - standalone - this means control is not bound to any parent reactive form ([formControl]/[form]).
+                     if you are going to use [ngModel] inside a form, you will need to either set the name or mark this option as `true`.
+      - updateOn - sets which trigger should update parent control value.
+                   default value is `change` that means that every time CVA control calls `onChangeCallback`
+                       parent component value will be changed.
+                   if you'll specify `blur` that will mean that every time CVA control calls `onTouchedCallback`
+                       parent component value will be changed, but `onChangeCallback` will be ignored.
+                   if you'll specify `submit` that will mean that parent will be informed only when form will be submitted.
+    -->
+    <div class="inner-form">
+      <form>
+        <label>
+          Updates on CHANGE
+          <input [(ngModel)]="textValue" [ngModelOptions]="{ name: 'control', updateOn: 'change'}" />
+        </label>
+        <button type="submit">SUBMIT</button>
+      </form>
+
+      <form>
+        <label>
+          Updates on BLUR
+          <input [(ngModel)]="textValue" [ngModelOptions]="{ name: 'control', updateOn: 'blur'}" />
+        </label>
+        <button type="submit">SUBMIT</button>
+      </form>
+
+      <form>
+        <label>
+          Updates on SUBMIT
+          <input [(ngModel)]="textValue" [ngModelOptions]="{ name: 'control', updateOn: 'submit'}" />
+        </label>
+        <button type="submit">SUBMIT</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="result-container">
+    <h4>Result:</h4>
+
+    Whoa, that's it! <br />
+    Your value is:
+    <div class="card secondary-light">
+      <pre>{{textValue}}</pre>
+    </div>
+  </div>
+</div>

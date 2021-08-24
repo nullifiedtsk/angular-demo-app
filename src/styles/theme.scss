@@ -1,0 +1,94 @@
+//$primary-color: #5d4037;
+//$primary-color-text: #ffffff;
+//$primary-color-dark: #321911;
+//$primary-color-dark-text: #ffffff;
+//$primary-color-light: #8b6b61;
+//$primary-color-light-text: #ffffff;
+//$secondary-color: #8d6e63;
+//$secondary-color-text: #ffffff;
+//$secondary-color-dark: #5f4339;
+//$secondary-color-dark-text: #ffffff;
+//$secondary-color-light: #be9c91;
+//$secondary-color-light-text: #321911;
+
+$primary-color: #546e7a;
+$primary-color-text: #ffffff;
+$primary-color-dark: #29434e;
+$primary-color-dark-text: #ffffff;
+$primary-color-light: #819ca9;
+$primary-color-light-text: #000000;
+$secondary-color: #fafafa;
+$secondary-color-text: #000000;
+$secondary-color-dark: #c7c7c7;
+$secondary-color-dark-text: #000000;
+$secondary-color-light: #ffffff;
+$secondary-color-light-text: #321911;
+
+:root {
+  --primary-color: #{$primary-color};
+  --primary-color-text: #{$primary-color-text};
+  --primary-color-dark: #{$primary-color-dark};
+  --primary-color-dark-text: #{$primary-color-dark-text};
+  --primary-color-light: #{$primary-color-light};
+  --primary-color-light-text: #{$primary-color-light-text};
+  --secondary-color: #{$secondary-color};
+  --secondary-color-text: #{$secondary-color-text};
+  --secondary-color-dark: #{$secondary-color-dark};
+  --secondary-color-dark-text: #{$secondary-color-dark-text};
+  --secondary-color-light: #{$secondary-color-light};
+  --secondary-color-light-text: #{$secondary-color-light-text};
+}
+
+@mixin primary {
+  background: var(--primary-color);
+  color: var(--primary-color-text);
+}
+
+@mixin primary-light {
+  background: var(--primary-color-light);
+  color: var(--primary-color-light-text);
+}
+
+@mixin primary-dark {
+  background: var(--primary-color-dark);
+  color: var(--primary-color-dark-text);
+}
+
+@mixin secondary {
+  background: var(--secondary-color);
+  color: var(--secondary-color-text);
+}
+
+@mixin secondary-light {
+  background: var(--secondary-color-light);
+  color: var(--secondary-color-light-text);
+}
+
+@mixin secondary-dark {
+  background: var(--secondary-color-dark);
+  color: var(--secondary-color-dark-text);
+}
+
+.primary {
+  @include primary();
+}
+
+.primary-light {
+  @include primary-light();
+}
+
+.primary-dark {
+  @include primary-dark();
+}
+
+.secondary {
+  @include secondary();
+}
+
+.secondary-light {
+  @include secondary-light();
+}
+
+.secondary-dark {
+  @include secondary-dark();
+}

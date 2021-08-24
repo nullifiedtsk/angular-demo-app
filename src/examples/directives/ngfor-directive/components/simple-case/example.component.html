@@ -1,0 +1,8 @@
+<div class="example-container">
+  <div class="result-container">
+    <h4>Result:</h4>
+    <!-- loops DATA variable with temponary variable called ENTRY -->
+    <!-- ngFor directive is providen by `CommonModule` of angular -->
+    <div class="card secondary-light" *ngFor="let entry of data">{{ entry.name }} have id {{ entry.id }}</div>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="example-container">
+  <div class="settings-block">
+    <h4>Settings:</h4>
+    <label>
+      Show extra info?
+      <input type="checkbox" [ngModel]="showBlock" (ngModelChange)="toggleExtraInfo($event)" />
+    </label>
+  </div>
+
+  <div class="result-container">
+    <h4>Result:</h4>
+    <!--
+      this block will not be displayed until `showBlock` variable will became truthy
+      but if `showBlock` is false it will display the template called `hiddenBlockPlaceholder`
+
+      You can also use this style:
+      *ngIf=`condition; then thenBlockTemplate else elseBlockTemplate`
+
+      Also you can use variable alias:
+      *ngIf=`(variable$ | async) as value; else elseBlockTemplate`
+    -->
+    <!-- ngIf directive is providen by `CommonModule` of angular -->
+    <div *ngIf="showBlock; else hiddenBlockPlaceholder" class="card secondary-light">
+      This is very secret and hidden information. Please, uncheck the checkbox once you have read it.
+    </div>
+
+    <ng-template #hiddenBlockPlaceholder>
+      <div class="card secondary-light">Please, toggle the checkbox to see some secret information.</div>
+    </ng-template>
+  </div>
+</div>
