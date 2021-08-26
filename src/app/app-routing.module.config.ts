@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { COMMON_EXAMPLES_MODULE_CONFIG } from '../examples/common/common.examples.module.config';
 import { DIRECTIVES_MODULE_CONFIG } from '../examples/directives/directives.examples.module.config';
 import { FORMS_EXAMPLES_MODULE_CONFIG } from '../examples/forms/forms.examples.module.config';
+import { TRAINING_EXAMPLES_MODULE_CONFIG } from '../examples/training-examples/training-examples.module.config';
 
 export const ROOT_CONFIG: Routes = [
   {
@@ -19,5 +20,11 @@ export const ROOT_CONFIG: Routes = [
     path: 'forms',
     data: { navItem: { name: 'Forms', children: FORMS_EXAMPLES_MODULE_CONFIG } },
     loadChildren: () => import('../examples/forms/forms.examples.module').then((x) => x.FormsExamplesModule),
+  },
+  {
+    path: 'training',
+    data: { navItem: { name: '', children: TRAINING_EXAMPLES_MODULE_CONFIG } },
+    loadChildren: () =>
+      import('../examples/training-examples/training-examples.module').then((x) => x.TrainingExamplesModule),
   },
 ];

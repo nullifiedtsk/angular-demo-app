@@ -1,0 +1,42 @@
+<div class="example-container">
+  <div class="settings-block">
+    <h4>Settings:</h4>
+    Use trackBy optimization? (Check how and which elements updates in the chrome debugging tools)
+    <input type="checkbox" [(ngModel)]="useTrackBy" />
+  </div>
+
+  <!-- if `useTrackBy` is set to true - display `withTrackBy` template, otherwise display `withoutTrackBy` template. -->
+  <div class="block messages">
+    <h4>Result:</h4>
+    <ng-container [ngTemplateOutlet]="useTrackBy ? withTrackBy : withoutTrackBy"></ng-container>
+  </div>
+
+  <ng-template #withTrackBy>
+    <!-- trackBy is a function that takes two arguments (index: number, item: T) -->
+    <!-- It's purpose is identical to React {key} prop. -->
+    <!-- With trackBy angular will only partially update the blocks inside the loop -->
+    <ng-container
+      *ngFor="let message of messages; trackBy: trackByFn"
+      [ngTemplateOutlet]="messageTemplate"
+      [ngTemplateOutletContext]="{ message: message }"
+    ></ng-container>
+  </ng-template>
+
+  <ng-template #withoutTrackBy>
+    <!-- Without trackBy angular will update all the blocks inside the loop all the times array changes -->
+    <ng-container
+      *ngFor="let message of messages"
+      [ngTemplateOutlet]="messageTemplate"
+      [ngTemplateOutletContext]="{ message: message }"
+    ></ng-container>
+  </ng-template>
+
+  <ng-template #messageTemplate let-message="message">
+    <div class="message card secondary-dark">
+      <div class="user">
+        {{ message.author }} <span class="date">{{ message.date | date }}</span>
+      </div>
+      <div class="text">{{ message.message }}</div>
+    </div>
+  </ng-template>
+</div>
